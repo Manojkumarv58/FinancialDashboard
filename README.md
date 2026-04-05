@@ -57,23 +57,4 @@ npm run dev
 
 Open: http://localhost:5173/
 
----
-
-## ✨ Highlights
-
-* Clean and modern UI
-* Fast performance using Vite
-* Modular and scalable structure
-* Real-world dashboard experience
-
-
-## 👨‍💻 Author
-
-**Manoj Kumar**
-MCA Student | Full Stack Developer
-
----
-
-## ⭐ Support
-
 If you like this project, please give it a ⭐ on GitHub!
