@@ -33,7 +33,7 @@ export function Insights() {
           <div className="flex items-start justify-between gap-3">
             <div>
               <div className="text-sm font-semibold text-rose-800 dark:text-rose-300">Highest spending category</div>
-              <div className="mt-2 text-lg font-bold text-rose-950 dark:text-slate-100">{top ? top.category : '—'}</div>
+              <div className="mt-2 break-words text-base font-bold text-rose-950 dark:text-slate-100 sm:text-lg">{top ? top.category : '—'}</div>
               <div className="mt-1 text-sm text-rose-900/75 dark:text-slate-300/75">
                 {top ? `${formatMoney(top.amount, currency)} total` : 'Add expenses to see your top category.'}
               </div>
@@ -48,7 +48,7 @@ export function Insights() {
               <div className="text-sm font-semibold text-sky-900 dark:text-sky-300">Month over month (expenses)</div>
               {mom ? (
                 <>
-                  <div className="mt-2 text-lg font-bold tabular-nums text-sky-950 dark:text-slate-100">{formatMoney(mom.last.expense, currency)}</div>
+                  <div className="mt-2 break-words text-base font-bold text-sky-950 tabular-nums dark:text-slate-100 sm:text-lg">{formatMoney(mom.last.expense, currency)}</div>
                   <div className="mt-1 text-sm text-sky-800/80 dark:text-slate-300/75">vs {formatMoney(mom.prev.expense, currency)} last month</div>
                 </>
               ) : (
@@ -62,7 +62,7 @@ export function Insights() {
             <div className="mt-3 rounded-xl border border-sky-200/90 bg-white/70 p-3 text-sm shadow-sm dark:border-slate-700 dark:bg-slate-800/80">
               <div className="flex items-center justify-between gap-3">
                 <div className="font-medium text-sky-800 dark:text-sky-300">Change</div>
-                <div className="font-bold tabular-nums text-sky-950 dark:text-slate-100">
+                <div className="break-words text-right font-bold text-sky-950 tabular-nums dark:text-slate-100">
                   {expenseDelta.diff >= 0 ? '+' : ''}
                   {formatMoney(expenseDelta.diff, currency)}
                   {expenseDelta.pct == null ? '' : ` (${expenseDelta.pct >= 0 ? '+' : ''}${expenseDelta.pct.toFixed(1)}%)`}

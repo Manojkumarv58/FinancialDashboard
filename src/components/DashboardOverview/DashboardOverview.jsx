@@ -39,7 +39,7 @@ export function DashboardOverview({ balance, income, expenses, theme }) {
 
   return (
     <section className="grid gap-4">
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-end sm:gap-4">
         <div>
           <h2 className="bg-gradient-to-r from-violet-700 to-cyan-600 bg-clip-text text-xl font-bold text-transparent">
             Dashboard
@@ -50,7 +50,7 @@ export function DashboardOverview({ balance, income, expenses, theme }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
         <SummaryCard
           accent="balance"
           title="Total Balance"
@@ -83,7 +83,7 @@ export function DashboardOverview({ balance, income, expenses, theme }) {
             </div>
           </div>
 
-          <div className="mt-4 h-64">
+          <div className="mt-4 h-56 sm:h-64">
             {monthly.length === 0 ? (
               <div className="flex h-full items-center justify-center text-sm text-violet-600/80 dark:text-slate-300/75">No data yet.</div>
             ) : (
@@ -125,7 +125,7 @@ export function DashboardOverview({ balance, income, expenses, theme }) {
           <div className="text-sm font-semibold text-cyan-900 dark:text-cyan-300">Spending breakdown</div>
           <div className="text-sm text-cyan-800/70 dark:text-slate-300/70">Top categories (expenses only).</div>
 
-          <div className="mt-4 h-64">
+          <div className="mt-4 h-56 sm:h-64">
             {byCategory.length === 0 ? (
               <div className="flex h-full items-center justify-center text-sm text-cyan-700/80 dark:text-slate-300/75">No expenses yet.</div>
             ) : (

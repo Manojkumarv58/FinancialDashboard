@@ -95,7 +95,7 @@ export function TransactionsSection() {
 
         {role === 'admin' ? (
           <button
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-violet-500/30 transition hover:brightness-110"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 px-3 py-2 text-sm font-semibold text-white shadow-md shadow-violet-500/30 transition hover:brightness-110 sm:w-auto"
             onClick={() => setShowAdd((v) => !v)}
           >
             <Plus className="h-4 w-4" />
@@ -188,15 +188,15 @@ export function TransactionsSection() {
           </label>
         </div>
 
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="mt-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div className="text-sm text-indigo-900/65 dark:text-slate-300/75">
             Showing <span className="font-semibold text-violet-700 dark:text-violet-300">{filtered.length}</span> of{' '}
             <span className="font-semibold text-violet-700 dark:text-violet-300">{transactions.length}</span>
           </div>
 
-          <div className="flex gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:flex">
             <button
-              className="inline-flex items-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70 xl:w-auto"
               onClick={() => dispatch(setSort('date'))}
             >
               <ArrowDownUp className="h-4 w-4" />
@@ -204,7 +204,7 @@ export function TransactionsSection() {
             </button>
 
             <button
-              className="inline-flex items-center gap-2 rounded-xl border border-cyan-200 bg-cyan-50/80 px-3 py-2 text-sm font-medium text-cyan-900 hover:bg-cyan-100 dark:border-cyan-900/70 dark:bg-cyan-950/40 dark:text-cyan-200 dark:hover:bg-cyan-950/60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-200 bg-cyan-50/80 px-3 py-2 text-sm font-medium text-cyan-900 hover:bg-cyan-100 dark:border-cyan-900/70 dark:bg-cyan-950/40 dark:text-cyan-200 dark:hover:bg-cyan-950/60 xl:w-auto"
               onClick={() => dispatch(setSort('amount'))}
             >
               <ArrowDownUp className="h-4 w-4" />
@@ -212,14 +212,14 @@ export function TransactionsSection() {
             </button>
 
             <button
-              className="inline-flex items-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70 xl:w-auto"
               onClick={exportToCSV}
             >
               Export CSV
             </button>
 
             <button
-              className="inline-flex items-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-violet-200 bg-violet-50/80 px-3 py-2 text-sm font-medium text-violet-900 hover:bg-violet-100 dark:border-violet-900/70 dark:bg-violet-950/50 dark:text-violet-200 dark:hover:bg-violet-950/70 xl:w-auto"
               onClick={exportToJSON}
             >
               Export JSON
@@ -233,42 +233,81 @@ export function TransactionsSection() {
               No transactions match your filters.
             </div>
           ) : (
-            <table className="w-full min-w-[720px] border-separate border-spacing-0">
-              <thead>
-                <tr className="text-left text-xs font-semibold uppercase tracking-wide text-indigo-800/90 dark:text-slate-300/80">
-                  <th className="px-3 py-3">Date</th>
-                  <th className="px-3 py-3">Description</th>
-                  <th className="px-3 py-3">Category</th>
-                  <th className="px-3 py-3">Type</th>
-                  <th className="px-3 py-3 text-right">Amount</th>
-                  {role === 'admin' && <th className="px-3 py-3 text-right">Edit</th>}
-                </tr>
-              </thead>
-
-              <tbody>
+            <>
+              <div className="grid gap-3 md:hidden">
                 {filtered.map((t) => (
-                  <tr key={t.id} className="text-sm text-slate-700 dark:text-slate-200">
-                    <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{formatDateISO(t.date)}</td>
-                    <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{t.description}</td>
-                    <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{t.category}</td>
-                    <td className="border-t border-slate-200/80 px-3 py-3 capitalize dark:border-slate-800">{t.type}</td>
-                    <td className="border-t border-slate-200/80 px-3 py-3 text-right font-medium dark:border-slate-800">
-                      {formatMoney(t.amount, currency)}
-                    </td>
-                    {role === 'admin' && (
-                      <td className="border-t border-slate-200/80 px-3 py-3 text-right dark:border-slate-800">
+                  <div
+                    key={t.id}
+                    className="rounded-2xl border border-slate-200/80 bg-white/80 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950/60"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="truncate font-semibold text-slate-900 dark:text-slate-100">{t.description}</div>
+                        <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">{formatDateISO(t.date)}</div>
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <div className="font-semibold text-slate-900 tabular-nums dark:text-slate-100">
+                          {formatMoney(t.amount, currency)}
+                        </div>
+                        <div className="mt-1 text-xs capitalize text-slate-500 dark:text-slate-400">{t.type}</div>
+                      </div>
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-violet-100 px-2.5 py-1 text-xs font-medium text-violet-800 dark:bg-violet-950/50 dark:text-violet-200">
+                        {t.category}
+                      </span>
+                      {role === 'admin' ? (
                         <button
-                          className="rounded-lg p-1 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-violet-300"
+                          className="ml-auto inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs font-medium text-violet-700 transition hover:bg-violet-50 dark:text-violet-300 dark:hover:bg-slate-800"
                           onClick={() => setEditing(t)}
                         >
                           <Pencil className="h-3.5 w-3.5" />
+                          Edit
                         </button>
-                      </td>
-                    )}
-                  </tr>
+                      ) : null}
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+
+              <table className="hidden w-full min-w-[720px] border-separate border-spacing-0 md:table">
+                <thead>
+                  <tr className="text-left text-xs font-semibold uppercase tracking-wide text-indigo-800/90 dark:text-slate-300/80">
+                    <th className="px-3 py-3">Date</th>
+                    <th className="px-3 py-3">Description</th>
+                    <th className="px-3 py-3">Category</th>
+                    <th className="px-3 py-3">Type</th>
+                    <th className="px-3 py-3 text-right">Amount</th>
+                    {role === 'admin' && <th className="px-3 py-3 text-right">Edit</th>}
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {filtered.map((t) => (
+                    <tr key={t.id} className="text-sm text-slate-700 dark:text-slate-200">
+                      <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{formatDateISO(t.date)}</td>
+                      <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{t.description}</td>
+                      <td className="border-t border-slate-200/80 px-3 py-3 dark:border-slate-800">{t.category}</td>
+                      <td className="border-t border-slate-200/80 px-3 py-3 capitalize dark:border-slate-800">{t.type}</td>
+                      <td className="border-t border-slate-200/80 px-3 py-3 text-right font-medium dark:border-slate-800">
+                        {formatMoney(t.amount, currency)}
+                      </td>
+                      {role === 'admin' && (
+                        <td className="border-t border-slate-200/80 px-3 py-3 text-right dark:border-slate-800">
+                          <button
+                            className="rounded-lg p-1 text-slate-500 transition hover:bg-slate-100 hover:text-violet-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-violet-300"
+                            onClick={() => setEditing(t)}
+                          >
+                            <Pencil className="h-3.5 w-3.5" />
+                          </button>
+                        </td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </div>
       </Card>

@@ -11,11 +11,13 @@ const accents = {
 
 export function SummaryCard({ title, value, icon, currency, accent = 'balance' }) {
   return (
-    <div className={`rounded-2xl p-5 text-white ${accents[accent] ?? accents.balance}`}>
+    <div className={`rounded-2xl p-4 text-white sm:p-5 ${accents[accent] ?? accents.balance}`}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="text-sm font-medium text-white/85">{title}</div>
-          <div className="mt-2 text-2xl font-bold tabular-nums tracking-tight">{formatMoney(value, currency)}</div>
+          <div className="mt-2 break-words text-xl font-bold tracking-tight tabular-nums sm:text-2xl">
+            {formatMoney(value, currency)}
+          </div>
         </div>
         {icon ? <div className="shrink-0 rounded-xl bg-white/15 p-2 text-white/95 backdrop-blur-sm">{icon}</div> : null}
       </div>

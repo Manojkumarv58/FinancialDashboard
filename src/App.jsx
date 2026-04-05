@@ -34,7 +34,7 @@ export default function App() {
   return (
     <div className="min-h-dvh bg-gradient-to-br from-violet-100 via-sky-50 to-amber-100 text-zinc-900 transition-colors dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 dark:text-slate-100">
       <Header theme={theme} toggleTheme={toggleTheme} />
-      <main className="mx-auto w-full max-w-6xl px-4 pb-12">
+      <main className="mx-auto w-full max-w-6xl px-3 pb-10 sm:px-4 sm:pb-12">
         <div className="grid gap-8">
           <DashboardOverview balance={balance} income={income} expenses={expenses} theme={theme} />
           <TransactionsSection />
